@@ -42,7 +42,7 @@ export function Hero({ season, updatedAt, totalParticipants }: HeroProps) {
           <div className="relative mb-6 animate-fade-in">
             <div className="absolute inset-0 bg-accent/20 rounded-full blur-2xl scale-150" />
             <div className="relative flex items-center justify-center w-24 h-24 rounded-full border-4 border-accent/50 bg-royal-dark/50 backdrop-blur-sm">
-              <img src="/Insignia-ER.png" alt="Embaixadores do Rei" className="w-20 h-20 object-contain" />
+              <img src={`${import.meta.env.BASE_URL}Insignia-ER.png`} alt="Embaixadores do Rei" className="w-20 h-20 object-contain" />
             </div>
           </div>
 
