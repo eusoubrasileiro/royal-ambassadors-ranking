@@ -5,6 +5,7 @@ export interface Rule {
   description: string;
   points: number;
   icon?: string;
+  explanation?: string;
 }
 
 export interface Participant {
