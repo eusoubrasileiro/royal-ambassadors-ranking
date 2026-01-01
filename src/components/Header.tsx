@@ -1,4 +1,4 @@
-import { Shield, BookOpen, Home } from 'lucide-react';
+import { Shield, BookOpen, Home, UserPlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -50,6 +50,21 @@ export function Header() {
             >
               <BookOpen className="w-4 h-4 mr-1" />
               <span className="hidden sm:inline">Versículos</span>
+            </Button>
+          </Link>
+
+          <Link to="/visitantes">
+            <Button
+              variant="outline"
+              size="sm"
+              className={`border-accent/40 ${
+                location.pathname === '/visitantes'
+                  ? 'bg-accent text-accent-foreground'
+                  : 'bg-accent/10 text-accent hover:bg-accent hover:text-accent-foreground'
+              }`}
+            >
+              <UserPlus className="w-4 h-4 mr-1" />
+              <span className="hidden sm:inline">Visitantes</span>
             </Button>
           </Link>
         </nav>

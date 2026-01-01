@@ -13,6 +13,7 @@ export interface Participant {
   name: string;
   points: number;
   memorizedVerses?: string[];
+  visitors?: string[];
 }
 
 export interface LeaderboardData {
