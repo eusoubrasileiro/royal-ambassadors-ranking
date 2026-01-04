@@ -1,4 +1,4 @@
-import { Shield, BookOpen, Home, UserPlus } from 'lucide-react';
+import { Shield, BookOpen, Home, UserPlus, Gamepad2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -65,6 +65,21 @@ export function Header() {
             >
               <UserPlus className="w-4 h-4 mr-1" />
               <span className="hidden sm:inline">Visitantes</span>
+            </Button>
+          </Link>
+
+          <Link to="/jogos">
+            <Button
+              variant="outline"
+              size="sm"
+              className={`border-accent/40 ${
+                location.pathname === '/jogos'
+                  ? 'bg-accent text-accent-foreground'
+                  : 'bg-accent/10 text-accent hover:bg-accent hover:text-accent-foreground'
+              }`}
+            >
+              <Gamepad2 className="w-4 h-4 mr-1" />
+              <span className="hidden sm:inline">Jogos</span>
             </Button>
           </Link>
         </nav>
