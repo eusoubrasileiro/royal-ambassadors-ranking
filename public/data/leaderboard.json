@@ -12,8 +12,8 @@
     { "id": 8, "description": "Disciplina", "points": -10, "icon": "AlertTriangle", "explanation": "Cristãos da igreja: -10pts | Não cristãos: -5pts | Cristãos de fora: -7pts" }
   ],
   "participants": [
-    { "id": 1, "name": "Arthur", "points": 212, "memorizedVerses": ["Jo 3:16", "Sl 23:1", "Jo 14:6", "Fp 4:13", "2 Pe 1:21"] }, 
-    { "id": 2, "name": "Daniel", "points": 445, "memorizedVerses": ["Jo 3:16", "Gn 1:1", "Sl 23:1", "Mt 6:9-13", "Sl 1:1-6"] }, 
+    { "id": 1, "name": "Arthur", "points": 267, "memorizedVerses": ["Jo 3:16", "Sl 23:1", "Jo 14:6", "Fp 4:13", "2 Pe 1:21"] }, 
+    { "id": 2, "name": "Daniel", "points": 500, "memorizedVerses": ["Jo 3:16", "Gn 1:1", "Sl 23:1", "Mt 6:9-13", "Sl 1:1-6"] }, 
     { "id": 3, "name": "Richarlyson", "points": 400, "memorizedVerses": ["Jo 3:16", "Fp 4:13", "Sl 119:11", "Sl 119:103", "Sl 32:8-9", "Gn 1:1", "Gn 1:3", "Jó 3:2"], "visitors": ["tia Sarah", "tio Walaf", "tio Marco", "Kelly namorada do Marco"] }, 
     { "id": 4, "name": "Miguel", "points": 95 , "memorizedVerses": ["Gn 1:1", "Fp 4:13"]},
     { "id": 5, "name": "Felipe", "points": 97, "memorizedVerses": ["Sl 23:1", "Fp 4:13"] }, 
