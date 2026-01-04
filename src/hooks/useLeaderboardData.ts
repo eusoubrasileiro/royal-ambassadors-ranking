@@ -16,6 +16,16 @@ export interface Participant {
   visitors?: string[];
 }
 
+interface RawLeaderboardData {
+  season: string;
+  updatedAt: string;
+  participants: Participant[];
+}
+
+interface RulesData {
+  rules: Rule[];
+}
+
 export interface LeaderboardData {
   season: string;
   updatedAt: string;
@@ -31,12 +41,24 @@ export function useLeaderboardData() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${import.meta.env.BASE_URL}data/leaderboard.json`);
-        if (!response.ok) {
+        const [leaderboardResponse, rulesResponse] = await Promise.all([
+          fetch(`${import.meta.env.BASE_URL}data/leaderboard.json`),
+          fetch(`${import.meta.env.BASE_URL}data/rules.json`)
+        ]);
+
+        if (!leaderboardResponse.ok || !rulesResponse.ok) {
           throw new Error('Falha ao carregar dados');
         }
-        const jsonData = await response.json();
-        setData(jsonData);
+
+        const [leaderboardData, rulesData]: [RawLeaderboardData, RulesData] = await Promise.all([
+          leaderboardResponse.json(),
+          rulesResponse.json()
+        ]);
+
+        setData({
+          ...leaderboardData,
+          rules: rulesData.rules
+        });
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Erro desconhecido');
       } finally {
