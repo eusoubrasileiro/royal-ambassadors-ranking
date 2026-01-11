@@ -1,4 +1,5 @@
 import type { Rule, Participant, VersesData } from '@/hooks/useLeaderboardData';
+import type { GamesData } from '@/hooks/useGamesData';
 
 /**
  * Get point value for a rule by matching description pattern
@@ -32,7 +33,8 @@ export function calculateParticipantPoints(
   participant: Participant,
   rules: Rule[],
   versesData?: VersesData,
-  selectedVersion: string = 'NVI'
+  selectedVersion: string = 'NVI',
+  gamesData?: GamesData
 ): number {
   // Start with baseline points (frozen from before tracking system)
   let total = participant.startPoints ?? 0;
@@ -74,6 +76,15 @@ export function calculateParticipantPoints(
   // Discipline penalties (stored per record with specific point values)
   participant.disciplines?.forEach(d => {
     total += d.points;  // negative values
+  });
+
+  // Game points - sum all results for this participant
+  gamesData?.games?.forEach(game => {
+    game.results
+      .filter(r => r.participantId === participant.id)
+      .forEach(r => {
+        total += r.points;
+      });
   });
 
   return total;

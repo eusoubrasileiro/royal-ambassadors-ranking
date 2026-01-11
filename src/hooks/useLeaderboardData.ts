@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { calculateParticipantPoints } from '@/lib/calculatePoints';
+import type { GamesData } from '@/hooks/useGamesData';
 
 export interface Rule {
   id: number;
@@ -74,6 +75,7 @@ export interface LeaderboardData {
   rules: Rule[];
   participants: Participant[];
   versesData?: VersesData;
+  gamesData?: GamesData;
 }
 
 export function useLeaderboardData() {
@@ -84,10 +86,11 @@ export function useLeaderboardData() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [leaderboardResponse, rulesResponse, versesResponse] = await Promise.all([
+        const [leaderboardResponse, rulesResponse, versesResponse, gamesResponse] = await Promise.all([
           fetch(`${import.meta.env.BASE_URL}data/leaderboard.json`),
           fetch(`${import.meta.env.BASE_URL}data/rules.json`),
-          fetch(`${import.meta.env.BASE_URL}data/verses.json`)
+          fetch(`${import.meta.env.BASE_URL}data/verses.json`),
+          fetch(`${import.meta.env.BASE_URL}data/games.json`)
         ]);
 
         if (!leaderboardResponse.ok || !rulesResponse.ok) {
@@ -105,10 +108,17 @@ export function useLeaderboardData() {
           versesData = await versesResponse.json();
         }
 
+        // Games data is optional - app should work without it
+        let gamesData: GamesData | undefined;
+        if (gamesResponse.ok) {
+          gamesData = await gamesResponse.json();
+        }
+
         setData({
           ...leaderboardData,
           rules: rulesData.rules,
-          versesData
+          versesData,
+          gamesData
         });
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Erro desconhecido');
@@ -128,7 +138,8 @@ export function useLeaderboardData() {
         participant,
         data?.rules ?? [],
         data?.versesData,
-        data?.versesData?.defaultVersion ?? 'NVI'
+        data?.versesData?.defaultVersion ?? 'NVI',
+        data?.gamesData
       )
     }))
     .sort((a, b) => {
