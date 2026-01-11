@@ -8,6 +8,23 @@ function getRulePoints(rules: Rule[], pattern: string): number {
 }
 
 /**
+ * Expand a verse range (e.g., "Mt 6:9-13") to individual verses
+ */
+function expandVerseRange(ref: string): string[] {
+  const match = ref.trim().match(/^([1-3]?\s?[A-Za-zÀ-ÿ]+)\s+(\d+):(\d+)-(\d+)$/);
+  if (!match) return [ref];
+  const [, book, chapter, startVerse, endVerse] = match;
+  const start = parseInt(startVerse, 10);
+  const end = parseInt(endVerse, 10);
+  if (start > end) return [ref];
+  const verses: string[] = [];
+  for (let v = start; v <= end; v++) {
+    verses.push(`${book} ${chapter}:${v}`);
+  }
+  return verses;
+}
+
+/**
  * Calculate total points for a participant based on their activity records.
  * Points are derived from rules.json values, making them configurable.
  */
@@ -35,13 +52,17 @@ export function calculateParticipantPoints(
   const smallVersePts = getRulePoints(rules, '<20');           // 25
   const largeVersePts = getRulePoints(rules, '>=20');          // 35
   participant.memorizedVerses?.forEach(ref => {
-    const wordCount = versesData?.verses[ref]?.[selectedVersion]?.wordCount;
-    // If we have word count data, use it; otherwise default to small verse points
-    if (wordCount !== undefined) {
-      total += wordCount >= 20 ? largeVersePts : smallVersePts;
-    } else {
-      total += smallVersePts;
-    }
+    // Expand ranges (e.g., "Mt 6:9-13") to individual verses
+    const expandedRefs = expandVerseRange(ref);
+    expandedRefs.forEach(singleRef => {
+      const wordCount = versesData?.verses[singleRef]?.[selectedVersion]?.wordCount;
+      // If we have word count data, use it; otherwise default to small verse points
+      if (wordCount !== undefined) {
+        total += wordCount >= 20 ? largeVersePts : smallVersePts;
+      } else {
+        total += smallVersePts;
+      }
+    });
   });
 
   // Candidato progress (from rules)
