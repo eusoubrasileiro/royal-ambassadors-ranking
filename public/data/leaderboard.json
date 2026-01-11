@@ -18,6 +18,7 @@
         { "date": "2026-01-04", "type": "igreja" },
         { "date": "2026-01-04", "type": "igreja" }
       ],
+      "visitors": ["Davi"],
       "candidatoProgress": { "prerequisites": true, "manualTasks": 0 }
     },
     {
@@ -60,7 +61,8 @@
         { "date": "2025-12-27", "type": "embaixada" },
         { "date": "2025-12-28", "type": "igreja" },
         { "date": "2026-01-03", "type": "embaixada" }
-      ]
+      ],
+      "visitors": ["primo Davi"]
     },
     {
       "id": 5,
@@ -74,7 +76,8 @@
         { "date": "2026-01-03", "type": "embaixada" },
         { "date": "2026-01-04", "type": "igreja" },
         { "date": "2026-01-04", "type": "igreja" }
-      ]
+      ],
+      "visitors": ["Davi"]
     },
     {
       "id": 6,
