@@ -1,0 +1,31 @@
+{
+  "id": "royal-ambassadors",
+  "name": "Embaixadores do Rei",
+  "shortName": "ER",
+  "description": "Gincana Anual",
+  "organization": "Primeira Igreja Batista de Confins (MG)",
+  "logo": {
+    "src": "/Insignia-ER.png",
+    "alt": "Embaixadores do Rei"
+  },
+  "basePath": "/disciple-ranking/embaixadores-do-rei/",
+  "routes": {
+    "home": { "enabled": true, "label": "Ranking", "icon": "Home" },
+    "verses": { "enabled": true, "label": "Versiculos", "icon": "BookOpen" },
+    "visitors": { "enabled": true, "label": "Visitantes", "icon": "UserPlus" },
+    "games": { "enabled": true, "label": "Jogos", "icon": "Gamepad2" }
+  },
+  "features": {
+    "bibleVerses": true,
+    "visitorTracking": true,
+    "games": true,
+    "candidatoProgress": true
+  },
+  "activityTypes": ["embaixada", "igreja"],
+  "terminology": {
+    "participant": "Embaixador",
+    "participants": "Embaixadores",
+    "attendance": "Presenca",
+    "season": "Temporada"
+  }
+}

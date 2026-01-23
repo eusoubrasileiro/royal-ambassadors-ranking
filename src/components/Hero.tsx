@@ -1,4 +1,5 @@
 import { Star, Crown, Calendar } from 'lucide-react';
+import { useAppConfig } from '@/ConfigProvider';
 
 interface HeroProps {
   season: string;
@@ -7,6 +8,15 @@ interface HeroProps {
 }
 
 export function Hero({ season, updatedAt, totalParticipants }: HeroProps) {
+  const config = useAppConfig();
+
+  // Config-driven values with fallbacks
+  const name = config?.name ?? 'Ranking';
+  const description = config?.description ?? 'Gincana';
+  const logoSrc = config?.logo?.src;
+  const logoAlt = config?.logo?.alt ?? name;
+  const terminology = config?.terminology ?? { participants: 'Participantes', season: 'Temporada' };
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('pt-BR', {
@@ -38,21 +48,29 @@ export function Hero({ season, updatedAt, totalParticipants }: HeroProps) {
 
       <div className="container relative px-4">
         <div className="flex flex-col items-center text-center">
-          {/* Shield emblem */}
+          {/* Logo/emblem */}
           <div className="relative mb-6 animate-fade-in">
             <div className="absolute inset-0 bg-accent/20 rounded-full blur-2xl scale-150" />
             <div className="relative flex items-center justify-center w-24 h-24 rounded-full border-4 border-accent/50 bg-royal-dark/50 backdrop-blur-sm">
-              <img src={`${import.meta.env.BASE_URL}Insignia-ER.png`} alt="Embaixadores do Rei" className="w-20 h-20 object-contain" />
+              {logoSrc ? (
+                <img
+                  src={`${import.meta.env.BASE_URL}${logoSrc.replace(/^\//, '')}`}
+                  alt={logoAlt}
+                  className="w-20 h-20 object-contain"
+                />
+              ) : (
+                <Crown className="w-12 h-12 text-accent" />
+              )}
             </div>
           </div>
 
           {/* Title */}
           <div className="space-y-2 mb-6 animate-fade-in animation-delay-100">
             <h1 className="text-3xl sm:text-4xl font-display font-bold text-primary-foreground">
-              Embaixadores do Rei
+              {name}
             </h1>
             <p className="text-lg text-accent font-medium">
-              Gincana Anual • Temporada {season}
+              {description} {season && `• ${terminology.season} ${season}`}
             </p>
           </div>
 
@@ -60,12 +78,12 @@ export function Hero({ season, updatedAt, totalParticipants }: HeroProps) {
           <div className="flex items-center gap-6 mb-6 animate-fade-in animation-delay-200">
             <div className="text-center">
               <p className="text-3xl font-bold text-accent">{totalParticipants}</p>
-              <p className="text-xs text-primary-foreground/70 uppercase tracking-wide">Participantes</p>
+              <p className="text-xs text-primary-foreground/70 uppercase tracking-wide">{terminology.participants}</p>
             </div>
             <div className="w-px h-10 bg-primary-foreground/20" />
             <div className="text-center">
               <p className="text-3xl font-bold text-primary-foreground">{season}</p>
-              <p className="text-xs text-primary-foreground/70 uppercase tracking-wide">Temporada</p>
+              <p className="text-xs text-primary-foreground/70 uppercase tracking-wide">{terminology.season}</p>
             </div>
           </div>
 
@@ -80,8 +98,8 @@ export function Hero({ season, updatedAt, totalParticipants }: HeroProps) {
       {/* Bottom wave */}
       <div className="absolute bottom-0 left-0 right-0">
         <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-          <path 
-            d="M0 80V40C240 0 480 0 720 20C960 40 1200 80 1440 60V80H0Z" 
+          <path
+            d="M0 80V40C240 0 480 0 720 20C960 40 1200 80 1440 60V80H0Z"
             className="fill-background"
           />
         </svg>

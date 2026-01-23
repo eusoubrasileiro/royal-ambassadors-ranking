@@ -8,12 +8,13 @@ export interface Rule {
   points: number;
   icon?: string;
   explanation?: string;
+  activityType?: string;  // Maps to attendance record types (e.g., "embaixada", "igreja", "quarto", "cozinha")
 }
 
-// Activity tracking types
+// Activity tracking types - generic to support any activity type
 export interface AttendanceRecord {
   date: string;        // ISO date
-  type: 'embaixada' | 'igreja';
+  type: string;        // Activity type (e.g., "embaixada", "igreja", "quarto", "cozinha", "banheiro", "fora")
 }
 
 export interface CandidatoProgress {

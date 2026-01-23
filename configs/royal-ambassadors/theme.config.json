@@ -1,0 +1,13 @@
+{
+  "colors": {
+    "primary": "220 82% 24%",
+    "accent": "45 70% 52%"
+  },
+  "fonts": {
+    "sans": ["Inter", "system-ui", "sans-serif"],
+    "display": ["Cinzel", "serif"]
+  },
+  "logo": {
+    "headerIcon": "Shield"
+  }
+}

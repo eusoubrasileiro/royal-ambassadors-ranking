@@ -1,4 +1,4 @@
-import { Trophy, Plus, Church, Crown, UserPlus, BookOpen, BadgeCheck, HelpCircle, AlertTriangle } from 'lucide-react';
+import { Trophy, Plus, Church, Crown, UserPlus, BookOpen, BadgeCheck, HelpCircle, AlertTriangle, Bed, UtensilsCrossed, Bath, Trees, Star, Heart } from 'lucide-react';
 import type { Rule } from '@/hooks/useLeaderboardData';
 import type { LucideIcon } from 'lucide-react';
 import {
@@ -14,12 +14,20 @@ interface RulesSectionProps {
 export function RulesSection({ rules }: RulesSectionProps) {
   // Icon mapping for dynamic icon rendering
   const iconMap: Record<string, LucideIcon> = {
+    // Royal Ambassadors icons
     Church,
     Crown,
     UserPlus,
     BookOpen,
     BadgeCheck,
     AlertTriangle,
+    // Family chores icons
+    Bed,
+    UtensilsCrossed,
+    Bath,
+    Trees,
+    Star,
+    Heart,
     Plus, // fallback
   };
 

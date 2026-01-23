@@ -1,12 +1,16 @@
 {
-  "name": "vite_react_shadcn_ts",
+  "name": "disciple-ranking",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "setup-config": "node scripts/setup-config.js",
+    "dev": "APP_CONFIG=royal-ambassadors npm run setup-config && vite",
+    "dev:family": "APP_CONFIG=family-morgan-ferreira npm run setup-config && vite",
     "fetch-verses": "node scripts/fetch-verses.js",
-    "build": "npm run fetch-verses && vite build",
+    "build:er": "APP_CONFIG=royal-ambassadors npm run setup-config && npm run fetch-verses && vite build --outDir dist/embaixadores-do-rei",
+    "build:family": "APP_CONFIG=family-morgan-ferreira npm run setup-config && vite build --outDir dist/family-morgan-ferreira",
+    "build": "npm run build:er && npm run build:family && node scripts/create-root-index.js",
     "build:dev": "npm run fetch-verses && vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"
