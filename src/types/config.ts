@@ -22,12 +22,14 @@ export interface AppConfig {
     verses?: RouteConfig;
     visitors?: RouteConfig;
     games?: RouteConfig;
+    attendance?: RouteConfig;
   };
   features: {
     bibleVerses: boolean;
     visitorTracking: boolean;
     games: boolean;
     candidatoProgress?: boolean;
+    attendanceCalendar?: boolean;
   };
   activityTypes: string[];  // e.g., ["embaixada", "igreja"] or ["quarto", "cozinha", "banheiro", "fora"]
   terminology: {

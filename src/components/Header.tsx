@@ -1,4 +1,4 @@
-import { Shield, BookOpen, Home, UserPlus, Gamepad2, Star } from 'lucide-react';
+import { Shield, BookOpen, Home, UserPlus, Gamepad2, Star, CalendarDays } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 import { useAppConfig } from '@/ConfigProvider';
@@ -11,6 +11,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   UserPlus,
   Gamepad2,
   Star,
+  CalendarDays,
 };
 
 export function Header() {
@@ -30,6 +31,7 @@ export function Header() {
     { path: '/versiculos', route: routes?.verses, icon: BookOpen, fallbackLabel: 'Versiculos', feature: 'bibleVerses' },
     { path: '/visitantes', route: routes?.visitors, icon: UserPlus, fallbackLabel: 'Visitantes', feature: 'visitorTracking' },
     { path: '/jogos', route: routes?.games, icon: Gamepad2, fallbackLabel: 'Jogos', feature: 'games' },
+    { path: '/presenca', route: routes?.attendance, icon: CalendarDays, fallbackLabel: 'Presenca', feature: 'attendanceCalendar' },
   ].filter(item => {
     // Always show home
     if (item.path === '/') return true;
