@@ -5,11 +5,18 @@ import { LoadingState } from '@/components/LoadingState';
 import { ErrorState } from '@/components/ErrorState';
 import { useLeaderboardData } from '@/hooks/useLeaderboardData';
 import { useBonusData, BonusChallenge, BonusResult } from '@/hooks/useBonusData';
-import { Star, Search, Calendar, Users, Crown, Shield } from 'lucide-react';
+import { Star, Search, Calendar, Users, Crown, Shield, Dumbbell } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { formatDateShort } from '@/lib/dateUtils';
 import { getParticipantName } from '@/lib/participantUtils';
+
+// Icon mapping for dynamic icon rendering
+const iconMap: Record<string, LucideIcon> = {
+  Star,
+  Dumbbell,
+};
 
 const Bonus = () => {
   const { data: leaderboardData, loading: leaderboardLoading, error: leaderboardError } = useLeaderboardData();
@@ -174,7 +181,9 @@ const Bonus = () => {
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    {filteredChallenges.map((challenge) => (
+                    {filteredChallenges.map((challenge) => {
+                      const ChallengeIcon = challenge.icon && iconMap[challenge.icon] ? iconMap[challenge.icon] : Star;
+                      return (
                       <div
                         key={challenge.id}
                         className="card-royal p-6 animate-fade-in"
@@ -182,7 +191,7 @@ const Bonus = () => {
                         <div className="flex items-center justify-between mb-4">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-full bg-accent/20 border border-accent/40 flex items-center justify-center">
-                              <Star className="w-5 h-5 text-accent fill-accent" />
+                              <ChallengeIcon className="w-5 h-5 text-accent" />
                             </div>
                             <div>
                               <h3 className="text-lg font-semibold text-primary">
@@ -209,7 +218,7 @@ const Bonus = () => {
                                 className="flex items-center justify-between p-3 rounded-lg bg-muted/30 border border-border"
                               >
                                 <div className="flex items-center gap-3">
-                                  <Star className="w-4 h-4 text-accent fill-accent" />
+                                  <ChallengeIcon className="w-4 h-4 text-accent" />
                                   <span className="font-medium">{getParticipantName(participants,result.participantId)}</span>
                                 </div>
                                 <span className="text-sm text-accent font-semibold">+{result.points} pts</span>
@@ -217,7 +226,7 @@ const Bonus = () => {
                             ))}
                         </div>
                       </div>
-                    ))}
+                    )})}
                   </div>
                 )
               ) : (
@@ -258,13 +267,15 @@ const Bonus = () => {
                         <div className="space-y-2">
                           {summary.challengeHistory
                             .sort((a, b) => new Date(b.challenge.date).getTime() - new Date(a.challenge.date).getTime())
-                            .map(({ challenge, result }) => (
+                            .map(({ challenge, result }) => {
+                              const HistoryIcon = challenge.icon && iconMap[challenge.icon] ? iconMap[challenge.icon] : Star;
+                              return (
                               <div
                                 key={`${challenge.id}-${result.participantId}`}
                                 className="flex items-center justify-between p-3 rounded-lg bg-muted/30 border border-border"
                               >
                                 <div className="flex items-center gap-3">
-                                  <Star className="w-4 h-4 text-accent fill-accent" />
+                                  <HistoryIcon className="w-4 h-4 text-accent" />
                                   <div>
                                     <span className="font-medium">{challenge.name}</span>
                                     <span className="text-xs text-muted-foreground ml-2">
@@ -274,7 +285,7 @@ const Bonus = () => {
                                 </div>
                                 <span className="text-sm text-accent font-semibold">+{result.points} pts</span>
                               </div>
-                            ))}
+                            )})}
                         </div>
                       </div>
                     ))}
