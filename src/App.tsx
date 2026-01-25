@@ -9,6 +9,7 @@ import Versiculos from "./pages/Versiculos";
 import Visitantes from "./pages/Visitantes";
 import Jogos from "./pages/Jogos";
 import Presenca from "./pages/Presenca";
+import Bonus from "./pages/Bonus";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ function AppRoutes() {
       {features?.visitorTracking && <Route path="/visitantes" element={<Visitantes />} />}
       {features?.games && <Route path="/jogos" element={<Jogos />} />}
       {features?.attendanceCalendar && <Route path="/presenca" element={<Presenca />} />}
+      {features?.bonusPoints && <Route path="/bonus" element={<Bonus />} />}
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />
     </Routes>

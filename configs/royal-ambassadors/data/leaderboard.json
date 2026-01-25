@@ -41,7 +41,7 @@
         { "date": "2026-01-10", "type": "embaixada" },
         { "date": "2026-01-11", "type": "igreja" },
         { "date": "2026-01-22", "type": "embaixada" },
-        { "date": "2026-01-25", "type": "igreja" }        
+        { "date": "2026-01-25", "type": "igreja" }
       ],
       "candidatoProgress": { "prerequisites": true, "manualTasks": 0 }
     },

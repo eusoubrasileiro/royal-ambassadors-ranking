@@ -32,6 +32,7 @@ export function Header() {
     { path: '/visitantes', route: routes?.visitors, icon: UserPlus, fallbackLabel: 'Visitantes', feature: 'visitorTracking' },
     { path: '/jogos', route: routes?.games, icon: Gamepad2, fallbackLabel: 'Jogos', feature: 'games' },
     { path: '/presenca', route: routes?.attendance, icon: CalendarDays, fallbackLabel: 'Presenca', feature: 'attendanceCalendar' },
+    { path: '/bonus', route: routes?.bonus, icon: Star, fallbackLabel: 'Bonus', feature: 'bonusPoints' },
   ].filter(item => {
     // Always show home
     if (item.path === '/') return true;

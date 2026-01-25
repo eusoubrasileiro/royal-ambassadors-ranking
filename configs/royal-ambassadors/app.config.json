@@ -14,14 +14,16 @@
     "verses": { "enabled": true, "label": "Versiculos", "icon": "BookOpen" },
     "visitors": { "enabled": true, "label": "Visitantes", "icon": "UserPlus" },
     "games": { "enabled": true, "label": "Jogos", "icon": "Gamepad2" },
-    "attendance": { "enabled": true, "label": "Presenca", "icon": "CalendarDays" }
+    "attendance": { "enabled": true, "label": "Presenca", "icon": "CalendarDays" },
+    "bonus": { "enabled": true, "label": "Bonus", "icon": "Star" }
   },
   "features": {
     "bibleVerses": true,
     "visitorTracking": true,
     "games": true,
     "candidatoProgress": true,
-    "attendanceCalendar": true
+    "attendanceCalendar": true,
+    "bonusPoints": true
   },
   "activityTypes": ["embaixada", "igreja"],
   "terminology": {
